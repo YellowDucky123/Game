@@ -10,12 +10,16 @@ LIBS = -lsfml-graphics -lsfml-window -lsfml-network -lsfml-system
 # Target executables
 all: server client
 
+HEADERS = NetworkManager.hpp GameEngine.hpp Player.hpp \
+          units/Unit.hpp units/Guard.hpp units/Archer.hpp units/Farmer.hpp \
+          units/Emperor.hpp units/Servant.hpp units/Doctor.hpp
+
 # Compile the server
-server: Server.cpp NetworkManager.hpp
+server: Server.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) Server.cpp -o server $(LIBS)
 
 # Compile the client
-client: Client.cpp NetworkManager.hpp
+client: Client.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) Client.cpp -o client $(LIBS)
 
 # Clean up the compiled files
